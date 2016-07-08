@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_popularmovies2" default="compile.module.popularmovies2">
+  <dirname property="module.popularmovies2.basedir" file="${ant.file.module_popularmovies2}"/>
+  
+  <property name="module.jdk.home.popularmovies2" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.popularmovies2" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.popularmovies2" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.popularmovies2" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="popularmovies2.output.dir" value="${module.popularmovies2.basedir}/build/classes/production/PopularMovies2"/>
+  <property name="popularmovies2.testoutput.dir" value="${module.popularmovies2.basedir}/build/classes/test/PopularMovies2"/>
+  
+  <path id="popularmovies2.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="popularmovies2.module.production.classpath">
+    <path refid="${module.jdk.classpath.popularmovies2}"/>
+  </path>
+  
+  <path id="popularmovies2.runtime.production.module.classpath">
+    <pathelement location="${popularmovies2.output.dir}"/>
+  </path>
+  
+  <path id="popularmovies2.module.classpath">
+    <path refid="${module.jdk.classpath.popularmovies2}"/>
+    <pathelement location="${popularmovies2.output.dir}"/>
+  </path>
+  
+  <path id="popularmovies2.runtime.module.classpath">
+    <pathelement location="${popularmovies2.testoutput.dir}"/>
+    <pathelement location="${popularmovies2.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.popularmovies2">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.popularmovies2">
+    <patternset refid="excluded.from.module.popularmovies2"/>
+  </patternset>
+  
+  
+  <target name="compile.module.popularmovies2" depends="compile.module.popularmovies2.production,compile.module.popularmovies2.tests" description="Compile module PopularMovies2"/>
+  
+  <target name="compile.module.popularmovies2.production" depends="register.custom.compilers" description="Compile module PopularMovies2; production classes"/>
+  
+  <target name="compile.module.popularmovies2.tests" depends="register.custom.compilers,compile.module.popularmovies2.production" description="compile module PopularMovies2; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.popularmovies2" description="cleanup module">
+    <delete dir="${popularmovies2.output.dir}"/>
+    <delete dir="${popularmovies2.testoutput.dir}"/>
+  </target>
+</project>

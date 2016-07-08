@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">PopularMovies2</string>
+    <string name="app_name">Popular Movies Second</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="grid_item_image_description">GridView Image</string>
+    <string name="title_activity_movie_detail">Movie Detail</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <!--fragment_movie_detail.xml String Value -->
+    <string name="original_title">Original Title</string>
+    <string name="release_date">Release Date</string>
+    <string name="user_rating">User Rating</string>
+    <string name="overview">Overview</string>
+
+    <!-- Label for the Sorting preference [CHAR LIMIT=30] -->
+    <string name="pref_sorting_label">Sort By</string>
+
+    <!-- Key name for storing location in SharedPreferences [CHAR LIMIT=NONE] -->
+    <string name="pref_sorting_key" translatable="false">sort</string>
+
+    <string name="pref_sorting_default" translatable="false">popularity.desc</string>
+
+    <!-- for arrays.xml -->
+
+    <!-- Value in SharedPreferences for Popularity option [CHAR LIMIT=NONE] -->
+    <string name="pref_sorting_label_popularity" translatable="false">popularity.desc</string>
+
+    <!-- Value in SharedPreferences for Vote option [CHAR LIMIT=NONE] -->
+    <string name="pref_sorting_label_vote" translatable="false">vote_average.desc</string>
+
+    <!-- Value in SharedPreferences for Vote option [CHAR LIMIT=NONE] -->
+    <string name="pref_sorting_label_favourite" translatable="false">favourite.desc</string>
+
+
+    <!-- Label for Highest Average Vote option in Sorting preference [CHAR LIMIT=25] -->
+    <string name="pref_sorting_vote">Highest Average Votes</string>
+
+    <!-- Label for Most Popular option in Sorting preference [CHAR LIMIT=25] -->
+    <string name="pref_sorting_popularity">Most Popular</string>
+
+    <string name="pref_sorting_favourite">Favourite</string>
 </resources>
