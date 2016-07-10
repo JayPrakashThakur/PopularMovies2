@@ -10,8 +10,9 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.Callback{
 
-    private boolean mTwoPane;
     private final String LOG_TAG = MainActivity.class.getSimpleName();
+    private boolean mTwoPane;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
