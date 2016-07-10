@@ -34,7 +34,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
     private final String LOG_TAG = MovieDetailActivityFragment.class.getSimpleName();
 
     private Movie movie;
-    private long movieId;
+    long movieId;
     View rootView;
     TrailersAdapter trailersAdapter;
     ReviewsAdapter reviewsAdapter;
@@ -103,14 +103,36 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
     static final int COL_FAV_MOVIE_OVERVIEW = 4;
     static final int COL_FAV_RELEASE_DATE = 5;
     static final int COL_FAV_USER_RATING = 6;
+/*public MovieDetailActivityFragment() {
+    }*/
 
-    public MovieDetailActivityFragment() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "onCreateView Called");
         rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
+
+        Intent intent = getActivity().getIntent();
+        if (intent != null) {
+            movieId = intent.getLongExtra(Intent.EXTRA_TEXT, 0);
+            Log.d(LOG_TAG, "Movie id " + movieId);
+        }
+        Bundle arguments = getArguments();
+        if (arguments != null){
+            movieId = arguments.getLong(Intent.EXTRA_TEXT);
+            Log.d(LOG_TAG,"Movie id "+movieId);
+        }
+
+        if (movieId != 0){
+
+            FetchTrailersTask getTrailersTask = new FetchTrailersTask(getContext());
+            getTrailersTask.execute(String.valueOf(movieId));
+
+            FetchReviewsTask getReviewsTask = new FetchReviewsTask(getContext());
+            getReviewsTask.execute(String.valueOf(movieId));
+
+        }
 
         trailersAdapter = new TrailersAdapter(getActivity(), null, 0);
         ListView trailersListView = (ListView) rootView.findViewById(R.id.trailer_list_view);
@@ -119,19 +141,6 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
         reviewsAdapter = new ReviewsAdapter(getActivity(), null, 0);
         ListView reviewsListView = (ListView) rootView.findViewById(R.id.review_list_view);
         reviewsListView.setAdapter(reviewsAdapter);
-
-        Intent intent = getActivity().getIntent();
-
-        if (intent != null){
-            movieId = intent.getLongExtra(Intent.EXTRA_TEXT,0);
-            Log.d(LOG_TAG,"Movie id "+movieId);
-
-            FetchTrailersTask getTrailersTask = new FetchTrailersTask(getContext());
-            getTrailersTask.execute(String.valueOf(movieId));
-
-            FetchReviewsTask getReviewsTask = new FetchReviewsTask(getContext());
-            getReviewsTask.execute(String.valueOf(movieId));
-        }
 
         return rootView;
     }
@@ -148,9 +157,21 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Log.v(LOG_TAG,"In onCreateLoader");
+        Log.v(LOG_TAG,"In onCreateLoader Movie Id "+movieId);
+        Uri uri = MovieContract.MovieEntry.buildMovieUri(movieId);
+        Log.v(LOG_TAG,"Uri :"+uri);
+        return new CursorLoader(
+                getActivity(),
+                uri,
+                MOVIE_COLUMNS,
+                null,
+                null,
+                null
+        );
 
-        switch (id){
+        /*switch (id){
             case MOVIE_DETAIL_LOADER:{
+                Log.v(LOG_TAG,"In Movie Detail Loader");
                 Uri uri = MovieContract.MovieEntry.buildMovieUri(movieId);
                 return new CursorLoader(
                         getActivity(),
@@ -162,6 +183,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 );
             }
             case TRAILER_LOADER:{
+                Log.v(LOG_TAG,"In Trailer Loader");
                 Uri uri = MovieContract.TrailerEntry.buildTrailerUri(movieId);
                 return new CursorLoader(
                         getActivity(),
@@ -173,6 +195,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 );
             }
             case REVIEW_LOADER:{
+                Log.v(LOG_TAG,"In Review Loader");
                 Uri uri = MovieContract.ReviewEntry.buildReviewUri(movieId);
                 return new CursorLoader(
                         getActivity(),
@@ -184,6 +207,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 );
             }
             case FAVOURITE_LOADER:{
+                Log.v(LOG_TAG,"In Review Loader");
                 Uri uri = MovieContract.FavouriteEntry.buildFavouriteUri();
                 return new CursorLoader(
                         getActivity(),
@@ -195,7 +219,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 );
             }
         }
-        return null;
+        return null;*/
     }
 
     @Override
@@ -208,7 +232,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
         switch (loader.getId()){
 
             case MOVIE_DETAIL_LOADER:{
-
+                Log.v(LOG_TAG,"In onLoadFinished Movie Detail Loader");
                 TextView originalTitle = (TextView)rootView.findViewById(R.id.original_title);
                 originalTitle.setText(data.getString(COL_TITLE));
 
@@ -263,7 +287,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
             }
 
             case TRAILER_LOADER:{
-
+                Log.v(LOG_TAG,"In onLoadFinished Movie Trailer Loader");
                 if (data != null){
                     trailersAdapter.swapCursor(data);
                 }
@@ -271,7 +295,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
             }
 
             case REVIEW_LOADER:{
-
+                Log.v(LOG_TAG,"In onLoadFinished Movie Review Loader");
                 if (data != null){
                     reviewsAdapter.swapCursor(data);
                 }
@@ -318,7 +342,6 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
         }
 
     }
-
 
     @Override
     public void onLoaderReset(Loader loader) {

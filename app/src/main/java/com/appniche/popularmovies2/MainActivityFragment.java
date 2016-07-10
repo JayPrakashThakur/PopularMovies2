@@ -91,8 +91,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         return rootView;
     }
 
-
-
     @Override
     public void onStart() {
         super.onStart();
