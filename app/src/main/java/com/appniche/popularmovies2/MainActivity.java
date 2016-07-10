@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.Callback{
 
-    private final String DETAIL_FRAGMENT_TAG = "DFTAG";
     private boolean mTwoPane;
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
             mTwoPane = true;
             if (savedInstanceState == null){
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.movie_detail_fragment, new MovieDetailActivityFragment(), DETAIL_FRAGMENT_TAG)
+                        .replace(R.id.movie_detail_fragment, new MovieDetailActivityFragment())
                         .commit();
             }else {
                 mTwoPane = false;
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
             detailActivityFragment.setArguments(bundle);
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.movie_detail_fragment, detailActivityFragment, DETAIL_FRAGMENT_TAG)
+                    .replace(R.id.movie_detail_fragment, detailActivityFragment)
                     .commit();
 
         }else{
