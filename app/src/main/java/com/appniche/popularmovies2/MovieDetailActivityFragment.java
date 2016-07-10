@@ -3,8 +3,6 @@ package com.appniche.popularmovies2;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import com.appniche.popularmovies2.data.MovieContract;
 import com.squareup.picasso.Picasso;
-
-import java.net.URL;
 
 /**
  * Created by JayPrakash on 25-03-2016.

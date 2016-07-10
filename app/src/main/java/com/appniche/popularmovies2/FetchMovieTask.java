@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.appniche.popularmovies2.data.MovieContract;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,9 +18,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Vector;
-
-import com.appniche.popularmovies2.BuildConfig;
-import com.appniche.popularmovies2.data.MovieContract;
 
 /**
  * Created by JayPrakash on 25-03-2016.

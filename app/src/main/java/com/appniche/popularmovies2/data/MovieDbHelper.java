@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.appniche.popularmovies2.data.MovieContract.MovieEntry;
-import com.appniche.popularmovies2.data.MovieContract.TrailerEntry;
-import com.appniche.popularmovies2.data.MovieContract.ReviewEntry;
 import com.appniche.popularmovies2.data.MovieContract.FavouriteEntry;
+import com.appniche.popularmovies2.data.MovieContract.MovieEntry;
+import com.appniche.popularmovies2.data.MovieContract.ReviewEntry;
+import com.appniche.popularmovies2.data.MovieContract.TrailerEntry;
 
 /**
  * Created by JayPrakash on 25-03-2016.

@@ -13,8 +13,6 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appniche.popularmovies2.data.MovieContract;
-
 /**
  * Created by JayPrakash on 26-03-2016.
  */
