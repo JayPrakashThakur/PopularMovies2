@@ -94,7 +94,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     public void onStart() {
         super.onStart();
         Log.d(LOG_TAG, "onStart method called");
-        updateMovies();
+        //updateMovies();
+        onSortingChanged();
     }
 
     public void updateMovies() {
@@ -147,6 +148,9 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         Log.v(LOG_TAG,"In onLoadFinished");
         movieGridViewAdapter.swapCursor(data);
+        int dataSize = movieGridViewAdapter.getCount();
+        Log.d(LOG_TAG,"data count"+dataSize);
+        movieGridViewAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -166,4 +170,18 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
          */
         void onItemSelected(long movieId);
     }
+
+    public void onSortingChanged(){
+        String sortingPrefferedString = Utility.getPreferredSortingOrder(getActivity());
+        Log.d(LOG_TAG,"sorting string "+sortingPrefferedString);
+        updateMovies();
+        getLoaderManager().restartLoader(MOVIE_LOADER,null,this);
+    }
+
+    /*@Override
+    public void onResume() {
+        super.onResume();
+        movieGridViewAdapter.notifyDataSetChanged();
+        getLoaderManager().restartLoader(MOVIE_LOADER,null,this);
+    }*/
 }

@@ -20,7 +20,8 @@
                 android:text="Original_title"
                 android:id="@+id/original_title"
                 android:textSize="30dp"
-                android:background="#26A69A"
+                android:textColor="@color/textColorPrimary"
+                android:background="@color/colorPrimary"
                 android:padding="40dp"
                 />
             <LinearLayout

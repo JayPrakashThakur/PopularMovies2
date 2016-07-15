@@ -50,7 +50,7 @@ public class MovieGridViewAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         Log.d(LOG_TAG,"Bind view called");
-        DatabaseUtils.dumpCursor(cursor);
+        //DatabaseUtils.dumpCursor(cursor);
         Movie movie = convertCursorRowToUXFormat(cursor);
         ImageView poster = (ImageView) view.findViewById(R.id.movie_image);
         poster.setScaleType(ImageView.ScaleType.CENTER_CROP);

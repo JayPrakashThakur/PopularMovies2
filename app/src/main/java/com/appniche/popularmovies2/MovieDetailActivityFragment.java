@@ -254,7 +254,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 final String release = data.getString(COL_RELEASE_DATE);
                 final String rating = data.getString(COL_USER_RATING);
                 Log.d(LOG_TAG,"at 236 values "+movieId+" "+title+" "+poster+" "+overvie+" "+release+" "+rating);
-                Button favButton = (Button) rootView.findViewById(R.id.favButton);
+                final Button favButton = (Button) rootView.findViewById(R.id.favButton);
                 favButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -272,8 +272,8 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
 
                             getContext().getContentResolver().insert(MovieContract.FavouriteEntry.CONTENT_URI, favMovieValues);
                             Log.d(LOG_TAG,"favourite movie inserted");
-//                            favButton.setBackgroundColor(Color.RED);
-//                            favButton.setText("Favourite");
+                            favButton.setBackgroundColor(getResources().getColor(R.color.favButtonColor));
+                            favButton.setText("Favourite");
                             isFavourite = true;
                         }
                     }
