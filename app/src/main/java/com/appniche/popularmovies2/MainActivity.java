@@ -11,12 +11,15 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.Callback{
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
+    private final String MOVIEDETAILACTIVITYFRAGMENT_TAG = "MDAFTAG";
     private boolean mTwoPane;
+    private String mSorting;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSorting = Utility.getPreferredSortingOrder(this);
         setContentView(R.layout.activity_main);
 
         if (findViewById(R.id.movie_detail_fragment) != null){
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
             mTwoPane = true;
             if (savedInstanceState == null){
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.movie_detail_fragment, new MovieDetailActivityFragment())
+                        .replace(R.id.movie_detail_fragment, new MovieDetailActivityFragment(), MOVIEDETAILACTIVITYFRAGMENT_TAG)
                         .commit();
             }else {
                 mTwoPane = false;
@@ -81,5 +84,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        String sortingPrefferedString = Utility.getPreferredSortingOrder(this);
+        Log.d(LOG_TAG,"sorting string "+sortingPrefferedString);
+
+        if (sortingPrefferedString != null & sortingPrefferedString.equals(mSorting)){
+
+            MainActivityFragment mainActivityFragment = (MainActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+            if (null != mainActivityFragment){
+                mainActivityFragment.onSortingChanged();
+            }
+
+            MovieDetailActivityFragment detailActivityFragment = (MovieDetailActivityFragment) getSupportFragmentManager().findFragmentByTag(MOVIEDETAILACTIVITYFRAGMENT_TAG);
+            if (null != detailActivityFragment){
+                detailActivityFragment.onSortingChanged();
+            }
+
+        }
+    }
 }

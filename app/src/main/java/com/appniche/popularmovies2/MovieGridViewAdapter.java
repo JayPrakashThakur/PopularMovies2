@@ -55,8 +55,8 @@ public class MovieGridViewAdapter extends CursorAdapter {
         ImageView poster = (ImageView) view.findViewById(R.id.movie_image);
         poster.setScaleType(ImageView.ScaleType.CENTER_CROP);
         if (poster != null){
-            //String uri = cursor.getString(MainActivityFragment.COL_MOVIE_POSTER);
-            Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/" +movie.getmPosterUrl());
+            String uri = cursor.getString(MainActivityFragment.COL_MOVIE_POSTER);
+            //Uri uri = Uri.parse(movie.getmPosterUrl());
             Picasso.with(context)
                     .load(uri)
                     .into(poster);

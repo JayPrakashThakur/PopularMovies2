@@ -42,12 +42,13 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
     // These indices are tied to MOVIE_COLUMNS.  If MOVIE_COLUMNS changes, these
     // must change.
-    static final int COL_TITLE = 1;
-    static final int COL_MOVIE_POSTER = 2;
-    static final int COL_MOVIE_OVERVIEW = 3;
-    static final int COL_RELEASE_DATE = 4;
-    static final int COL_USER_RATING = 5;
-    static final int COL_MOVIE_ID = 6;
+    static final int COL_MOVIE_ID = 1;
+    static final int COL_TITLE = 2;
+    static final int COL_MOVIE_POSTER = 3;
+    static final int COL_MOVIE_OVERVIEW = 4;
+    static final int COL_RELEASE_DATE = 5;
+    static final int COL_USER_RATING = 6;
+
 
     private static final String[] FAVOURITE_COLUMNS = {
 
@@ -90,13 +91,13 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         return rootView;
     }
 
-    @Override
+  /*  @Override
     public void onStart() {
         super.onStart();
         Log.d(LOG_TAG, "onStart method called");
         //updateMovies();
         onSortingChanged();
-    }
+    }*/
 
     public void updateMovies() {
         Log.d(LOG_TAG, "update movies called");
@@ -178,10 +179,4 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         getLoaderManager().restartLoader(MOVIE_LOADER,null,this);
     }
 
-    /*@Override
-    public void onResume() {
-        super.onResume();
-        movieGridViewAdapter.notifyDataSetChanged();
-        getLoaderManager().restartLoader(MOVIE_LOADER,null,this);
-    }*/
 }

@@ -8,20 +8,21 @@ import android.os.Parcelable;
  */
 public class Movie implements Parcelable {
 
+    private String mId;
     private String mTitle;
     private String mPosterUrl;
     private String mOverview;
     private String mReleaseDate;
     private String mRating;
-    private String mId;
 
-    public Movie(String mTitle, String mPosterUrl, String mOverview, String mReleaseDate, String mRating, String mId) {
+
+    public Movie(String mId,String mTitle, String mPosterUrl, String mOverview, String mReleaseDate, String mRating) {
+        this.mId = mId;
         this.mTitle = mTitle;
         this.mPosterUrl = mPosterUrl;
         this.mOverview = mOverview;
         this.mReleaseDate = mReleaseDate;
         this.mRating = mRating;
-        this.mId = mId;
     }
 
     public String getmTitle() {
@@ -73,12 +74,12 @@ public class Movie implements Parcelable {
     }
 
     protected Movie(Parcel in){
+        mId = in.readString();
         mTitle = in.readString();
         mPosterUrl = in.readString();
         mOverview = in.readString();
         mReleaseDate = in.readString();
         mRating = in.readString();
-        mId = in.readString();
     }
 
     @Override
@@ -88,12 +89,12 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mId);
         dest.writeString(mTitle);
         dest.writeString(mPosterUrl);
         dest.writeString(mOverview);
         dest.writeString(mReleaseDate);
         dest.writeString(mRating);
-        dest.writeString(mId);
     }
 
     public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {

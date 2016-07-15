@@ -342,4 +342,12 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
     public void onLoaderReset(Loader loader) {
 
     }
+
+    public void onSortingChanged(){
+        getLoaderManager().initLoader(MOVIE_DETAIL_LOADER,null,this);
+        getLoaderManager().initLoader(TRAILER_LOADER,null,this);
+        getLoaderManager().initLoader(REVIEW_LOADER,null,this);
+        getLoaderManager().initLoader(FAVOURITE_LOADER, null,this);
+    }
+
 }
