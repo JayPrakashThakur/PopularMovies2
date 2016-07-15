@@ -51,23 +51,23 @@ public class FetchMovieTask extends AsyncTask<String, Void, Void> {
 
             for(int i=0;i<movieArray.length();i++){
                 movie = new Movie(
+                        movieArray.getJSONObject(i).getString("id"),
                         movieArray.getJSONObject(i).getString("original_title"),
                         BASE_URL + movieArray.getJSONObject(i).getString("poster_path"),
                         movieArray.getJSONObject(i).getString("overview"),
                         movieArray.getJSONObject(i).getString("release_date"),
-                        movieArray.getJSONObject(i).getString("vote_average"),
-                        movieArray.getJSONObject(i).getString("id")
+                        movieArray.getJSONObject(i).getString("vote_average")
                 );
 
                 ContentValues movieValues = new ContentValues();
 
                 //Adding data
+                movieValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, movie.getmId());
                 movieValues.put(MovieContract.MovieEntry.COLUMN_TITLE, movie.getmTitle());
                 movieValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_POSTER, movie.getmPosterUrl());
                 movieValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_OVERVIEW, movie.getmOverview());
                 movieValues.put(MovieContract.MovieEntry.COLUMN_RELEASE_DATE, movie.getmReleaseDate());
                 movieValues.put(MovieContract.MovieEntry.COLUMN_USER_RATING, movie.getmRating());
-                movieValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, movie.getmId());
 
                 cVVector.add(movieValues);
             }

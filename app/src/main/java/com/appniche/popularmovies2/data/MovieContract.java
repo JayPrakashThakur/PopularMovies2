@@ -58,13 +58,13 @@ public class MovieContract {
         public static final String  TABLE_NAME = "movie";
         //Columns
         //public static final String  COLUMN_ID = "id";//movie no 1,2 ...
+        public static final String COLUMN_MOVIE_ID = "movie_id";//Foreign Key
         public static final String  COLUMN_TITLE = "title";
         public static final String  COLUMN_MOVIE_POSTER = "poster";
         public static final String  COLUMN_MOVIE_OVERVIEW = "overview";
         public static final String  COLUMN_RELEASE_DATE = "release_date";
         public static final String  COLUMN_USER_RATING = "user_rating";
         //public static final String  COLUMN_VIDEO= "Video";
-        public static final String COLUMN_MOVIE_ID = "movie_id";//Foreign Key
 
         // for building URIs on insertion
         public static Uri buildMovieUri(long id){

@@ -124,11 +124,11 @@ public class FetchTrailersTask extends AsyncTask<String, Void, Void>{
 
                 ContentValues contentValues = new ContentValues();
 
+                contentValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID,movieId);
                 contentValues.put(MovieContract.TrailerEntry.COLUMN_KEY, item.getString("key"));
                 contentValues.put(MovieContract.TrailerEntry.COLUMN_NAME, item.getString("name"));
                 contentValues.put(MovieContract.TrailerEntry.COLUMN_SITE, item.getString("site"));
                 contentValues.put(MovieContract.TrailerEntry.COLUMN_SIZE, item.getString("size"));
-                contentValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID,movieId);
 
                 cVVector[i]=contentValues;
             }

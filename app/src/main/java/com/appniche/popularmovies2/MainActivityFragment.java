@@ -32,12 +32,12 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     private static final String[] MOVIE_COLUMNS = {
 
             MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry._ID,
+            MovieContract.MovieEntry.COLUMN_MOVIE_ID,
             MovieContract.MovieEntry.COLUMN_TITLE,
             MovieContract.MovieEntry.COLUMN_MOVIE_POSTER,
             MovieContract.MovieEntry.COLUMN_MOVIE_OVERVIEW,
             MovieContract.MovieEntry.COLUMN_RELEASE_DATE,
-            MovieContract.MovieEntry.COLUMN_USER_RATING,
-            MovieContract.MovieEntry.COLUMN_MOVIE_ID
+            MovieContract.MovieEntry.COLUMN_USER_RATING
     };
 
     // These indices are tied to MOVIE_COLUMNS.  If MOVIE_COLUMNS changes, these

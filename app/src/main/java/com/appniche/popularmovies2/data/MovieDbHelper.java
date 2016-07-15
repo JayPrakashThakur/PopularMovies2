@@ -32,13 +32,13 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         //create a table to hold movies
         final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + MovieEntry.TABLE_NAME + " (" +
                 MovieEntry._ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                MovieEntry.COLUMN_MOVIE_ID+ " INTEGER UNIQUE ON CONFLICT REPLACE NOT NULL ON CONFLICT ABORT "+
                 MovieEntry.COLUMN_TITLE+" TEXT NOT NULL, "+
                 MovieEntry.COLUMN_MOVIE_POSTER+" TEXT NOT NULL, "+
                 MovieEntry.COLUMN_MOVIE_OVERVIEW+" TEXT NOT NULL, "+
                 MovieEntry.COLUMN_RELEASE_DATE+" TEXT NOT NULL, "+
                 MovieEntry.COLUMN_USER_RATING+" REAL NOT NULL, "+
-                MovieEntry.COLUMN_MOVIE_ID+ " INTEGER UNIQUE ON CONFLICT REPLACE NOT NULL ON CONFLICT ABORT "
-                +
+
                 " );";
         Log.d(LOG_TAG, "create table statement"+SQL_CREATE_MOVIE_TABLE);
 

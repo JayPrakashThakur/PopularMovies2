@@ -126,9 +126,9 @@ public class FetchReviewsTask extends AsyncTask<String, Void, Void> {
                 JSONObject item = reviewArray.getJSONObject(i);
 
                 ContentValues contentValues = new ContentValues();
+                contentValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID,movieId);
                 contentValues.put(MovieContract.ReviewEntry.COLUMN_AUTHOR, item.getString("author"));
                 contentValues.put(MovieContract.ReviewEntry.COLUMN_CONTENT, item.getString("content"));
-                contentValues.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID,movieId);
 
                 cVVector[i]=contentValues;
             }
