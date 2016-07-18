@@ -108,11 +108,6 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
         Log.d(LOG_TAG, "onCreateView Called");
         rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
-        Intent intent = getActivity().getIntent();
-        if (intent != null) {
-            movieId = intent.getLongExtra(Intent.EXTRA_TEXT, 0);
-            Log.d(LOG_TAG, "Movie id " + movieId);
-        }
         Bundle arguments = getArguments();
         if (arguments != null){
             movieId = arguments.getLong(Intent.EXTRA_TEXT);

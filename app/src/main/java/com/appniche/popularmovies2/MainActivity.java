@@ -77,8 +77,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
                     .commit();
 
         }else{
-            Intent intent = new Intent(this, MovieDetailActivity.class)
-                    .putExtra(Intent.EXTRA_TEXT, movieId);
+            Intent intent = new Intent(this, MovieDetailActivity.class);
+                    //.putExtra(Intent.EXTRA_TEXT, movieId);
+            Bundle bundle = new Bundle();
+            bundle.putLong(Intent.EXTRA_TEXT, movieId);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
     }

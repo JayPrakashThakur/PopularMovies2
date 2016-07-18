@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    tools:context="com.appniche.popularmovies2.MovieDetailActivityFragment"
-    tools:showIn="@layout/activity_movie_detail">
+    tools:context="com.appniche.popularmovies2.MovieDetailActivityFragment">
+    <!--tools:showIn="@layout/activity_movie_detail">-->
 
     <ScrollView
         android:layout_width="match_parent"

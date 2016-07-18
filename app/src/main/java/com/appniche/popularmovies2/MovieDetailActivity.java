@@ -17,38 +17,38 @@ import android.view.View;
 public class MovieDetailActivity extends AppCompatActivity {
 
     private final String LOG_TAG = MovieDetailActivity.class.getSimpleName();
+    long movieId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
-        if (savedInstanceState == null){
-            Bundle bundle = new Bundle();
-            long movieId = bundle.getLong(Intent.EXTRA_TEXT);
-            bundle.putLong(Intent.EXTRA_TEXT, movieId);
+        Intent intent = getIntent();
+        movieId = intent.getLongExtra(Intent.EXTRA_TEXT, 0);
 
-            MovieDetailActivityFragment detailActivityFragment = new MovieDetailActivityFragment();
-            detailActivityFragment.setArguments(bundle);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Intent.EXTRA_TEXT, movieId);
 
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.movie_detail_fragment, detailActivityFragment)
-                    .commit();
+        MovieDetailActivityFragment detailActivityFragment = new MovieDetailActivityFragment();
+        detailActivityFragment.setArguments(bundle);
 
-        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.movie_detail_fragment, detailActivityFragment)
+                .commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        });*/
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
