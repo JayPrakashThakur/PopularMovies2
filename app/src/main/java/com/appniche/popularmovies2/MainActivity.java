@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
     }
 
     @Override

@@ -22,6 +22,8 @@ public class ReviewsAdapter extends CursorAdapter {
     }
 
     private Review convertCursorRowToUXFormat(Cursor cursor) {
+        DatabaseUtils.dumpCursor(cursor);
+        Log.d(LOG_TAG, DatabaseUtils.dumpCursorToString(cursor));
         Review review = new Review(
                 cursor.getString(MovieDetailActivityFragment.COL_CONTENT),
                 cursor.getString(MovieDetailActivityFragment.COL_AUTHOR)

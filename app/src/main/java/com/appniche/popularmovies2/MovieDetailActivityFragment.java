@@ -153,7 +153,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Log.v(LOG_TAG,"In onCreateLoader");
         Log.v(LOG_TAG,"In onCreateLoader Movie Id "+movieId);
-        Uri uri = MovieContract.MovieEntry.buildMovieUri(movieId);
+        /*Uri uri = MovieContract.MovieEntry.buildMovieUri(movieId);
         Log.v(LOG_TAG,"Uri :"+uri);
         return new CursorLoader(
                 getActivity(),
@@ -162,9 +162,9 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 null,
                 null,
                 null
-        );
+        );*/
 
-        /*switch (id){
+        switch (id){
             case MOVIE_DETAIL_LOADER:{
                 Log.v(LOG_TAG,"In Movie Detail Loader");
                 Uri uri = MovieContract.MovieEntry.buildMovieUri(movieId);
@@ -214,7 +214,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 );
             }
         }
-        return null;*/
+        return null;
     }
 
     @Override
