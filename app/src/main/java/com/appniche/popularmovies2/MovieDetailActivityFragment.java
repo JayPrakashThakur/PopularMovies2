@@ -228,6 +228,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
 
             case MOVIE_DETAIL_LOADER:{
                 Log.v(LOG_TAG,"In onLoadFinished Movie Detail Loader");
+                mScrollView.setVisibility(View.VISIBLE);
                 TextView originalTitle = (TextView)rootView.findViewById(R.id.original_title);
                 originalTitle.setText(data.getString(COL_TITLE));
 
@@ -278,7 +279,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                         }
                     }
                 });
-
+                break;
             }
 
             case TRAILER_LOADER:{
@@ -286,7 +287,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 if (data != null){
                     trailersAdapter.swapCursor(data);
                 }
-
+                break;
             }
 
             case REVIEW_LOADER:{
@@ -294,7 +295,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
                 if (data != null){
                     reviewsAdapter.swapCursor(data);
                 }
-
+                break;
             }
 
             case FAVOURITE_LOADER:{

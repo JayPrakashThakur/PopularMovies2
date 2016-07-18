@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:id="@+id/mScrollView"
+    android:visibility="invisible"
     tools:context="com.appniche.popularmovies2.MovieDetailActivityFragment">
 
         <LinearLayout
