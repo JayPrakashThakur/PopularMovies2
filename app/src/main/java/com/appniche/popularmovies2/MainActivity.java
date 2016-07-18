@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ScrollView;
 
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.Callback{
 
@@ -14,7 +16,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
     private final String MOVIEDETAILACTIVITYFRAGMENT_TAG = "MDAFTAG";
     private boolean mTwoPane;
     private String mSorting;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.movie_detail_fragment, new MovieDetailActivityFragment(), MOVIEDETAILACTIVITYFRAGMENT_TAG)
                         .commit();
-            }else {
-                mTwoPane = false;
             }
 
+        }else {
+            mTwoPane = false;
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
 
     @Override
     public void onItemSelected(long movieId) {
+
         if(mTwoPane){
             Log.d(LOG_TAG, "tablet layout found Movie id"+movieId);
             Bundle bundle = new Bundle();
@@ -78,10 +80,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
 
         }else{
             Intent intent = new Intent(this, MovieDetailActivity.class);
-                    //.putExtra(Intent.EXTRA_TEXT, movieId);
+
             Bundle bundle = new Bundle();
             bundle.putLong(Intent.EXTRA_TEXT, movieId);
             intent.putExtras(bundle);
+
             startActivity(intent);
         }
     }

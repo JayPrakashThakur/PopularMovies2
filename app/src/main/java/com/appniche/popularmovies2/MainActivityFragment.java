@@ -91,14 +91,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         return rootView;
     }
 
-  /*  @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(LOG_TAG, "onStart method called");
-        //updateMovies();
-        onSortingChanged();
-    }*/
-
     public void updateMovies() {
         Log.d(LOG_TAG, "update movies called");
         FetchMovieTask fetchMovieTask = new FetchMovieTask(getActivity());

@@ -1,13 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mScrollView"
     tools:context="com.appniche.popularmovies2.MovieDetailActivityFragment">
-    <!--tools:showIn="@layout/activity_movie_detail">-->
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -167,6 +164,5 @@
 
         </LinearLayout>
 
-    </ScrollView>
 
-</LinearLayout>
+</ScrollView>

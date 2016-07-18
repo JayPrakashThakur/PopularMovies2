@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.appniche.popularmovies2.data.MovieContract;
@@ -34,6 +36,7 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
     TrailersAdapter trailersAdapter;
     ReviewsAdapter reviewsAdapter;
     boolean isFavourite = false;
+    ScrollView mScrollView;
 
     private static final int MOVIE_DETAIL_LOADER = 0;
     private static final int TRAILER_LOADER = 1;
@@ -131,6 +134,8 @@ public class MovieDetailActivityFragment extends Fragment implements LoaderManag
         reviewsAdapter = new ReviewsAdapter(getActivity(), null, 0);
         ListView reviewsListView = (ListView) rootView.findViewById(R.id.review_list_view);
         reviewsListView.setAdapter(reviewsAdapter);
+
+        mScrollView = (ScrollView) rootView.findViewById(R.id.mScrollView);
 
         return rootView;
     }
