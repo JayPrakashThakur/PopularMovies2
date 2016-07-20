@@ -92,22 +92,20 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     }
 
     public void updateMovies() {
-        Log.d(LOG_TAG, "update movies called");
+
         FetchMovieTask fetchMovieTask = new FetchMovieTask(getActivity());
         fetchMovieTask.execute();
-        Log.d(LOG_TAG, "fetch movie task executed");
+
         movieGridViewAdapter.notifyDataSetChanged();
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Log.d(LOG_TAG,"-----in the onActivityCreated----");
         getLoaderManager().initLoader(MOVIE_LOADER,null,this);
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Log.d(LOG_TAG, "----in the onCreateLoader----");
         //@sortingPrefferdString stores the user prefferd way of sorting
         String sortingPrefferedString = Utility.getPreferredSortingOrder(getActivity());
         Log.d(LOG_TAG,"sorting string "+sortingPrefferedString);
@@ -139,10 +137,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.v(LOG_TAG,"In onLoadFinished");
+
         movieGridViewAdapter.swapCursor(data);
-        int dataSize = movieGridViewAdapter.getCount();
-        Log.d(LOG_TAG,"data count"+dataSize);
         movieGridViewAdapter.notifyDataSetChanged();
     }
 
