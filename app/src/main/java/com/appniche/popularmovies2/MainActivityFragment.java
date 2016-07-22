@@ -127,7 +127,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                     getActivity(),
                     movieURI,
                     MOVIE_COLUMNS,
-                    null,//"sort_by=",
+                    null,//"sort_by=?",
                     null,//new String[]{sortingPrefferedString},
                     null
             );

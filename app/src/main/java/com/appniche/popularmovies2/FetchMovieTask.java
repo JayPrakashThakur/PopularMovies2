@@ -1,5 +1,6 @@
 package com.appniche.popularmovies2;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -72,14 +73,16 @@ public class FetchMovieTask extends AsyncTask<String, Void, Void> {
                 cVVector.add(movieValues);
             }
             int inserted = 0;
+            int deleted = 0;
             // add to database
             if ( cVVector.size() > 0 ) {
                 ContentValues[] cvArray = new ContentValues[cVVector.size()];
                 cVVector.toArray(cvArray);
+                deleted = mContext.getContentResolver().delete(MovieContract.MovieEntry.CONTENT_URI, null, null);
                 inserted = mContext.getContentResolver().bulkInsert(MovieContract.MovieEntry.CONTENT_URI, cvArray);
             }
 
-            Log.d(LOG_TAG, "FetchMovieTask Complete. " + inserted + " Inserted");
+            Log.d(LOG_TAG, "FetchMovieTask Complete. "+deleted+" deleted &" + inserted + " Inserted");
 
         } catch (JSONException e) {
             Log.e(LOG_TAG, e.getMessage(), e);
@@ -103,27 +106,20 @@ public class FetchMovieTask extends AsyncTask<String, Void, Void> {
             // Construct the URL for the Movie Database query
             String BASE_URL = "http://api.themoviedb.org/3/discover/movie?";
 
-            //Both Sorting urls
-           //String POPULARITY_URL = "sort_by=popularity.desc";
-            //String VOTE_URL = "sort_by=vote_average.desc&vote_count.gte=20";
-
-            //A String variable @SORTING_URL will contain sorting url based on preferences
-           // String SORTING_URL = POPULARITY_URL;
-
-//            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences();
-//            String preferenceValue = preferences.getString("sort","popularity");
-//
-//            Log.v(LOG_TAG, "Preference Value " +preferenceValue);
-//
-//            if (preferenceValue.equals("vote"))
-//                SORTING_URL = VOTE_URL;
-//            else
-//                SORTING_URL = POPULARITY_URL;
+            String sortingPrefferedString = Utility.getPreferredSortingOrder(mContext);
+            Log.d(LOG_TAG,"sorting string "+sortingPrefferedString);
+            String SORTING_URL = "";
+            String POPULARITY_URL = "sort_by=popularity.desc";
+            String VOTE_URL = "sort_by=vote_average.desc&vote_count.gte=20";
+            if (sortingPrefferedString.equals("vote_average.desc"))
+                SORTING_URL = VOTE_URL;
+            else
+                SORTING_URL = POPULARITY_URL;
 
             String API_KEY = "&api_key=" + BuildConfig.MOVIE_DB_API_KEY;
             //URL url = new URL(BASE_URL + POPULARITY_URL + API_KEY);
-
-            URL url = new URL(BASE_URL + API_KEY);
+           // URL url = new URL(BASE_URL + API_KEY);
+            URL url = new URL(BASE_URL + SORTING_URL + API_KEY);
 
             //URL url = new URL("http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=your_api_key");
 

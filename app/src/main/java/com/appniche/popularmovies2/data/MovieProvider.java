@@ -358,13 +358,6 @@ public class MovieProvider extends ContentProvider {
         return rowsUpdated;
     }
 
-    private void normalizeDate(ContentValues values) {
-        // normalize the date value
-        if (values.containsKey(MovieContract.MovieEntry.COLUMN_RELEASE_DATE)) {
-            long dateValue = values.getAsLong(MovieContract.MovieEntry.COLUMN_RELEASE_DATE);
-            values.put(MovieContract.MovieEntry.COLUMN_RELEASE_DATE, MovieContract.normalizeDate(dateValue));
-        }
-    }
 
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
@@ -451,6 +444,14 @@ public class MovieProvider extends ContentProvider {
 
             default:
                 return super.bulkInsert(uri, values);
+        }
+    }
+
+    private void normalizeDate(ContentValues values) {
+        // normalize the date value
+        if (values.containsKey(MovieContract.MovieEntry.COLUMN_RELEASE_DATE)) {
+            long dateValue = values.getAsLong(MovieContract.MovieEntry.COLUMN_RELEASE_DATE);
+            values.put(MovieContract.MovieEntry.COLUMN_RELEASE_DATE, MovieContract.normalizeDate(dateValue));
         }
     }
 }
