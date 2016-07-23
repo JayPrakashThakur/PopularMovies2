@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
             mTwoPane = false;
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
     }
 
